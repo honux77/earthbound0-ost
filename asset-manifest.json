@@ -1,16 +1,17 @@
 {
   "files": {
     "main.css": "/earthbound0-ost/static/css/main.ac896dc6.css",
-    "main.js": "/earthbound0-ost/static/js/main.20225530.js",
+    "main.js": "/earthbound0-ost/static/js/main.23c0fe48.js",
     "static/js/787.2e2548a8.chunk.js": "/earthbound0-ost/static/js/787.2e2548a8.chunk.js",
     "static/media/jcpennybedroom_clean.png": "/earthbound0-ost/static/media/jcpennybedroom_clean.5b1dfc99d0c1574eab99.png",
+    "static/media/01-mother-earth.mp3": "/earthbound0-ost/static/media/01-mother-earth.ccba92bea1518b002035.mp3",
     "index.html": "/earthbound0-ost/index.html",
     "main.ac896dc6.css.map": "/earthbound0-ost/static/css/main.ac896dc6.css.map",
-    "main.20225530.js.map": "/earthbound0-ost/static/js/main.20225530.js.map",
+    "main.23c0fe48.js.map": "/earthbound0-ost/static/js/main.23c0fe48.js.map",
     "787.2e2548a8.chunk.js.map": "/earthbound0-ost/static/js/787.2e2548a8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ac896dc6.css",
-    "static/js/main.20225530.js"
+    "static/js/main.23c0fe48.js"
   ]
 }
