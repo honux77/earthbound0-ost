@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  background-image: url('../public/wallpapers/c1084sbedroom_glare.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;  
 }
 
 .App-logo {
