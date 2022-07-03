@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/honux77.github.io/earthbound-ost/static/css/main.5d4b430d.css",
+    "main.js": "/honux77.github.io/earthbound-ost/static/js/main.f99fd5e5.js",
+    "static/js/787.2e2548a8.chunk.js": "/honux77.github.io/earthbound-ost/static/js/787.2e2548a8.chunk.js",
+    "static/media/c1084sbedroom_glare.png": "/honux77.github.io/earthbound-ost/static/media/c1084sbedroom_glare.79144762a34d0e57cd86.png",
+    "index.html": "/honux77.github.io/earthbound-ost/index.html",
+    "main.5d4b430d.css.map": "/honux77.github.io/earthbound-ost/static/css/main.5d4b430d.css.map",
+    "main.f99fd5e5.js.map": "/honux77.github.io/earthbound-ost/static/js/main.f99fd5e5.js.map",
+    "787.2e2548a8.chunk.js.map": "/honux77.github.io/earthbound-ost/static/js/787.2e2548a8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5d4b430d.css",
+    "static/js/main.f99fd5e5.js"
+  ]
+}
