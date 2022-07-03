@@ -1,11 +1,16 @@
 import './App.css';
-import Audio from "./components/audio";
+import React from 'react';
+import Play from "./components/play";
+
+import bgm1 from "./mp3/01-mother-earth.mp3"
 
 function App() {
+  const [audio] = React.useState(new Audio(bgm1));  
+
   return (
-    <div className="App">
-      <h1>Mother</h1>
-      <Audio></Audio>
+    <div className="App">      
+      <div className="list"></div>
+      <Play audio={audio}></Play>
     </div>
   );
 }
