@@ -13,12 +13,16 @@
   height: 100vh;  
 }
 
-.Button {
-  color: white;
+.Control {
   position: absolute;
   text-align: center;
-  bottom: 33%;
+  bottom: 22%;
   left: 45%;
+}
+
+.Button {
+  color: white;  
+  margin: 5px;
   font-size: 2em;
   border-bottom: 2px solid red;
   padding: 10px;
@@ -30,8 +34,8 @@
   position: absolute;
   text-align: left;  
   top: 50%;
-  right: 25%;
-  font-size: 1em;
+  right: 27%;
+  font-size: 1.2em;
   border-bottom: 2px solid blue;
   padding: 10px;
   font-family: retro;   

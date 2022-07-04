@@ -1,4 +1,8 @@
-import mp3files from "./mp3files";
+const mp3files = [
+    "01. Mother Earth.mp3",
+    "02. Pollyanna (I Believe in You).mp3",
+    "03. Bein' Friend.mp3"
+];
 
 const getTitle = (filename, current) => {
     const title = filename.substring(3, filename.length - 4);

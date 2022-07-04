@@ -1,27 +1,25 @@
 import React from "react";
 
-const Play = ({audio, setFirst, isPlaying, setIsPlaying})=> {    
+const Play = ({audios, setFirst, isPlaying, setIsPlaying, current})=> {    
 
     const handlePlayButton = (e)=> {            
         setFirst(false);
         setIsPlaying((prev)=> {
             return prev ? false: true;
         })
-
-        console.log(isPlaying);
+        
         if (isPlaying) {
             console.log("stop audio")
-            audio.pause();
-            audio.currentTime = 0;
+            audios[current].pause();
         } else {
-            audio.play();
+            audios[current].play();
         }        
     };
 
-    const child = isPlaying ? "Stop": "Play";
+    const child = isPlaying ? "Pause": "Play";
 
     return (
-        <div className="Button" onClick={handlePlayButton}>{child}</div>
+        <span className="Button" onClick={handlePlayButton}>{child}</span>
     );
 };
 
