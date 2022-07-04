@@ -26,9 +26,16 @@
   font-family: retro;  
 }
 
-.AudioBox {
+.PlayList {
+  color: white;
   position: absolute;
-  bottom: 10%;
+  text-align: left;  
+  top: 40%;
+  left: 18%;
+  font-size: 1em;
+  border: 2px solid red;
+  padding: 10px;
+  font-family: retro;    
 }
 
 @media (prefers-reduced-motion: no-preference) {
