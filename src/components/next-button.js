@@ -1,12 +1,10 @@
 import React from "react";
 
-const NextButton = ({first, audios, isPlaying, current, setCurrent})=> {    
+const NextButton = ({first, audios, isPlaying, current, setCurrent})=> {
 
     if(first) return;
 
     const handlePlayButton = (e)=> {            
-        
-        console.log("stop audio")
         audios[current].pause();
         audios[current].currentTime = 0;
 
