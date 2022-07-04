@@ -11,6 +11,19 @@ import track10 from "../mp3/10. Eight Melodies.mp3";
 import track11 from "../mp3/11. Theme of Onett.mp3";
 import track12 from "../mp3/12. Theme of Twoson.mp3";
 import track13 from "../mp3/13. Theme of Threek.mp3";
+import track14 from "../mp3/14. Theme of Saturn Valley.mp3"
+import track15 from "../mp3/15. Theme of Bicycle (Spinning Pedals).mp3"
+import track16 from "../mp3/16. Theme of Winters.mp3"
+import track17 from "../mp3/17. Hospital Dub (I Want to be Called a Great Doctor).mp3"
+import track18 from "../mp3/18. Lucky Nice Blues.mp3"
+import track19 from "../mp3/19. Fourside (Held in the Skyscraper).mp3"
+import track20 from "../mp3/20. Hotel (Pearl Necklace).mp3"
+import track21 from "../mp3/21. Theme of Summers.mp3"
+import track22 from "../mp3/22. Theme of Ramma.mp3"
+import track23 from "../mp3/23. Eight Melodies.mp3"
+import track24 from "../mp3/24. Light of Life.mp3"
+import track25 from "../mp3/25. Because I Love You.mp3"
+import track26 from "../mp3/26. Smiles and Tears.mp3"
 
 const audioList = [];
 
@@ -27,5 +40,18 @@ audioList.push(new Audio(track10));
 audioList.push(new Audio(track11));
 audioList.push(new Audio(track12));
 audioList.push(new Audio(track13));
+audioList.push(new Audio(track14));
+audioList.push(new Audio(track15));
+audioList.push(new Audio(track16));
+audioList.push(new Audio(track17));
+audioList.push(new Audio(track18));
+audioList.push(new Audio(track19));
+audioList.push(new Audio(track20));
+audioList.push(new Audio(track21));
+audioList.push(new Audio(track22));
+audioList.push(new Audio(track23));
+audioList.push(new Audio(track24));
+audioList.push(new Audio(track25));
+audioList.push(new Audio(track26));
 
 export default audioList;
