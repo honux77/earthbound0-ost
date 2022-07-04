@@ -1,13 +1,32 @@
-import { MAX_VOL } from "../constant";
+import { MAX_VOL, MIN_VOL } from "../constant";
+import React from 'react';
 
 const Osd = ({volume, audios}) => {
+    const [show, setShow] = React.useState(false);
+
+    React.useEffect(() => {
+        setShow(true);
+        const timerId = setTimeout(()=>{
+            setShow(false);
+        }, 3000);
+
+        return () => {
+            clearTimeout(timerId);
+        };
+    },[volume]);
+
     
     audios.forEach(audio => {
-        console.log(audio.volume);
         audio.volume = volume / MAX_VOL;
     });
+
+    if (!show) return;
+    let vol = `VOL: ${volume}`
+    if (volume === MAX_VOL) vol = "VOL: MAX"
+    if (volume === MIN_VOL) vol = "MUTE"
+
     return (
-        <div className="Osd">VOL: {volume}</div>
+        <div className="Osd">{vol}</div>
     );
 }
 

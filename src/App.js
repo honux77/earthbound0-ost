@@ -16,7 +16,7 @@ import MinusButton from './components/minus-button';
 
 import audioList from './components/audio-list';
 import Osd from './components/osd';
-import {MAX_VOL} from './constant';
+import {MAX_VOL, VOL_STEP} from './constant';
 
 
 function App() { 
@@ -25,7 +25,7 @@ function App() {
   const [first, setFirst] = React.useState(true);
   const [audios] = React.useState(audioList);
   const [isPlaying, setIsPlaying] = React.useState(false);
-  const [volume, setVolume] = React.useState(MAX_VOL);
+  const [volume, setVolume] = React.useState(MAX_VOL - 2 * VOL_STEP);
 
   const currBackground = first ? startBackground : playingBackground;
 
