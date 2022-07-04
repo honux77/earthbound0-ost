@@ -5,20 +5,24 @@ import React from 'react';
 import Play from "./components/play";
 import PlayList from "./components/playlist";
 
-import mp3 from "./mp3/01. Mother Earth.mp3";
 import startBackground from "./images/start.jpg";
 import playingBackground from "./images/playing.jpg";
 import logo from "./images/mother-logo.gif"
 import stoppedLogo from "./images/mother-logo-nospin.png"
+import PrevButton from './components/prev-button';
+import NextButton from './components/next-button';
+
+import audioList from './components/audio-list';
 
 
 function App() {  
-  const [current, setCurruent] = React.useState(0);  
+  const [current, setCurrent] = React.useState(0);  
   const [first, setFirst] = React.useState(true);
-  const [audio] = React.useState(new Audio(mp3));
+  const [audios] = React.useState(audioList);
   const [isPlaying, setIsPlaying] = React.useState(false);        
 
   const currBackground = first ? startBackground: playingBackground;
+  
 
   const Logo = ()=> {
     if (first) return;
@@ -31,8 +35,12 @@ function App() {
   
   return (
     <div className="App" style={{backgroundImage: `url(${currBackground})` }}>      
-      <PlayList first={first} current={current} setCurrent={setCurruent}></PlayList>      
-      <Play audio={audio} setFirst={setFirst} isPlaying={isPlaying} setIsPlaying={setIsPlaying}></Play>
+      <PlayList first={first} current={current} setCurrent={setCurrent}></PlayList>
+      <div className='Control'>
+      <PrevButton audios={audios} isPlaying={isPlaying} current={current} setCurrent={setCurrent}></PrevButton>
+      <Play audios={audios} setFirst={setFirst} isPlaying={isPlaying} setIsPlaying={setIsPlaying} current={current}></Play>
+      <NextButton audios={audios} isPlaying={isPlaying} current={current} setCurrent={setCurrent}></NextButton>
+      </div>      
       <Logo></Logo>
     </div>
   );
