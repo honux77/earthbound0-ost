@@ -1,6 +1,11 @@
+@font-face {
+  font-family: retro;
+  src: url('../public/nes2.ttf');
+}
+
+
 .App {
   text-align: center;
-  background-image: url('../public/wallpapers/c1084sbedroom_glare.png');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -8,37 +13,45 @@
   height: 100vh;  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Button {
+  color: white;
+  position: absolute;
+  text-align: center;
+  bottom: 33%;
+  left: 45%;
+  font-size: 2em;
+  border-bottom: 2px solid red;
+  padding: 10px;
+  font-family: retro;  
+}
+
+.PlayList {
+  color: white;
+  position: absolute;
+  text-align: left;  
+  top: 50%;
+  right: 25%;
+  font-size: 1em;
+  border-bottom: 2px solid blue;
+  padding: 10px;
+  font-family: retro;   
+  list-style-type: none; 
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.Logo {
+  position: absolute;
+  left: 30%;
+  top: 30%;  
+  width: 40%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
