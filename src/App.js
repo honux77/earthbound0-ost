@@ -37,9 +37,9 @@ function App() {
     <div className="App" style={{backgroundImage: `url(${currBackground})` }}>      
       <PlayList first={first} current={current} setCurrent={setCurrent}></PlayList>
       <div className='Control'>
-      <PrevButton audios={audios} isPlaying={isPlaying} current={current} setCurrent={setCurrent}></PrevButton>
+      <PrevButton first={first} audios={audios} isPlaying={isPlaying} current={current} setCurrent={setCurrent}></PrevButton>
       <Play audios={audios} setFirst={setFirst} isPlaying={isPlaying} setIsPlaying={setIsPlaying} current={current}></Play>
-      <NextButton audios={audios} isPlaying={isPlaying} current={current} setCurrent={setCurrent}></NextButton>
+      <NextButton first={first} audios={audios} isPlaying={isPlaying} current={current} setCurrent={setCurrent}></NextButton>
       </div>      
       <Logo></Logo>
     </div>

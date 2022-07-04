@@ -1,6 +1,8 @@
 import React from "react";
 
-const PrevButton = ({audios, isPlaying, current, setCurrent})=> {    
+const PrevButton = ({first, audios, isPlaying, current, setCurrent})=> {    
+    
+    if(first) return;
 
     const handlePlayButton = (e)=> {            
         
