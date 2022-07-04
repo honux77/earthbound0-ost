@@ -1,11 +1,13 @@
 {
   "files": {
     "main.css": "/earthbound0-ost/static/css/main.23b7dac7.css",
-    "main.js": "/earthbound0-ost/static/js/main.370e230f.js",
+    "main.js": "/earthbound0-ost/static/js/main.54aa8d88.js",
     "static/js/787.2e2548a8.chunk.js": "/earthbound0-ost/static/js/787.2e2548a8.chunk.js",
+    "static/media/04. Humoresque of a Little Dog.mp3": "/earthbound0-ost/static/media/04. Humoresque of a Little Dog.fdaafdba47f6dce8ccc2.mp3",
     "static/media/02. Pollyanna (I Believe in You).mp3": "/earthbound0-ost/static/media/02. Pollyanna (I Believe in You).420d1916a1f870d8eb30.mp3",
     "static/media/03. Bein' Friend.mp3": "/earthbound0-ost/static/media/03. Bein' Friend.eea38f7c3cbea1ad6042.mp3",
     "static/media/01. Mother Earth.mp3": "/earthbound0-ost/static/media/01. Mother Earth.ccba92bea1518b002035.mp3",
+    "static/media/05. Eight Melodies (Toy piano Version sx).mp3": "/earthbound0-ost/static/media/05. Eight Melodies (Toy piano Version sx).a3c779eeb2f7095a9ee7.mp3",
     "static/media/start.jpg": "/earthbound0-ost/static/media/start.082a9fa359b1843e505e.jpg",
     "static/media/playing.jpg": "/earthbound0-ost/static/media/playing.59270f08ebe08467e0a1.jpg",
     "static/media/mother-logo.gif": "/earthbound0-ost/static/media/mother-logo.92606b51d619b8c03d54.gif",
@@ -13,11 +15,11 @@
     "static/media/nes2.ttf": "/earthbound0-ost/static/media/nes2.06ab2d306c9a44dd7fa7.ttf",
     "index.html": "/earthbound0-ost/index.html",
     "main.23b7dac7.css.map": "/earthbound0-ost/static/css/main.23b7dac7.css.map",
-    "main.370e230f.js.map": "/earthbound0-ost/static/js/main.370e230f.js.map",
+    "main.54aa8d88.js.map": "/earthbound0-ost/static/js/main.54aa8d88.js.map",
     "787.2e2548a8.chunk.js.map": "/earthbound0-ost/static/js/787.2e2548a8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.23b7dac7.css",
-    "static/js/main.370e230f.js"
+    "static/js/main.54aa8d88.js"
   ]
 }
