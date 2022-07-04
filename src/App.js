@@ -50,7 +50,7 @@ function App() {
 
   return (
     <div className="App" style={{ backgroundImage: `url(${currBackground})` }}>
-      <PlayList first={first} current={current} setCurrent={setCurrent}></PlayList>
+      <PlayList first={first} current={current} audios={audios}></PlayList>
       <div className='Control'>
         <PrevButton first={first} audios={audios} isPlaying={isPlaying} current={current} setCurrent={setCurrent}></PrevButton>
         <Play audios={audios} setFirst={setFirst} isPlaying={isPlaying} setIsPlaying={setIsPlaying} current={current}></Play>

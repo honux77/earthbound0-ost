@@ -34,7 +34,8 @@
   position: absolute;
   text-align: left;  
   top: 50%;
-  right: 27%;
+  width: 27%;
+  right: 23%;
   font-size: 1.2em;
   border-bottom: 2px solid blue;
   padding: 10px;
