@@ -1,24 +1,30 @@
 const mp3files = [
-    "01. Mother Earth.mp3",
-    "02. Pollyanna (I Believe in You).mp3",
-    "03. Bein' Friend.mp3",
+    "01. Mother Earth",
+    "02. Pollyanna (I Believe in You)",
+    "03. Bein' Friend",
     "04. Humoresque of a Little Dog",
-    "05. Eight Melodies (Toy piano Version sx)"
+    "05. Eight Melodies (Toy piano Version sx)",
+    "06. Wisdom of The World",
+    "07. TWINKLE Elementary School"
 ];
 
-const getTitle = (filename, current) => {
-    const title = filename.substring(3, filename.length - 4);
+const getTitle = (filename, current) => {    
     if (mp3files[current] === filename) {
-        return `${title} *`
+        return `${filename} *`
     }
-    return title
+    return filename
 }
 
 const PlayList = ({first, current, setCurrent }) => {
+    const SIZE = 3;
     if (first) return;
+    let sublist = mp3files.slice(0, SIZE);
+    if (current > 0) sublist = mp3files.slice(current - 1, current + SIZE - 1);
+    if (current == mp3files.length - 1) sublist = mp3files.slice(current - 2);
+        
     return (
         <ul className="PlayList">
-            {mp3files.map((filename) => (
+            {sublist.map((filename) => (
                 <li key={filename}>{getTitle(filename, current)}</li>
             ))}
         </ul>
