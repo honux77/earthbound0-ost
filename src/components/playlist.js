@@ -1,7 +1,9 @@
 const mp3files = [
     "01. Mother Earth.mp3",
     "02. Pollyanna (I Believe in You).mp3",
-    "03. Bein' Friend.mp3"
+    "03. Bein' Friend.mp3",
+    "04. Humoresque of a Little Dog",
+    "05. Eight Melodies (Toy piano Version sx)"
 ];
 
 const getTitle = (filename, current) => {

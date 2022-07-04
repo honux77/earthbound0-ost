@@ -1,7 +1,7 @@
 import React from "react";
 
-const Play = ({audios, setFirst, isPlaying, setIsPlaying, current})=> {    
-
+const Play = ({audios, setFirst, isPlaying, setIsPlaying, current})=> {
+ 
     const handlePlayButton = (e)=> {            
         setFirst(false);
         setIsPlaying((prev)=> {
@@ -9,7 +9,7 @@ const Play = ({audios, setFirst, isPlaying, setIsPlaying, current})=> {
         })
         
         if (isPlaying) {
-            console.log("stop audio")
+            console.log("Stop song: ", current)
             audios[current].pause();
         } else {
             audios[current].play();
