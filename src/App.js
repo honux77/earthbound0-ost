@@ -11,17 +11,31 @@ import logo from "./images/mother-logo.gif"
 import stoppedLogo from "./images/mother-logo-nospin.png"
 import PrevButton from './components/prev-button';
 import NextButton from './components/next-button';
+import PlusButton from './components/plus-button';
+import MinusButton from './components/minus-button';
 
 import audioList from './components/audio-list';
+import Osd from './components/osd';
+import {MAX_VOL} from './constant';
 
 
-function App() {
+function App() { 
+
   const [current, setCurrent] = React.useState(0);
   const [first, setFirst] = React.useState(true);
   const [audios] = React.useState(audioList);
   const [isPlaying, setIsPlaying] = React.useState(false);
+  const [volume, setVolume] = React.useState(MAX_VOL);
 
   const currBackground = first ? startBackground : playingBackground;
+
+  const handleKeydown = (e) => {
+    console.log("key press");
+    console.log(e.key);
+    setVolume((prev)=> {
+      return prev;
+    });
+  }
 
   React.useEffect(() => {
     console.log("once");
@@ -45,16 +59,18 @@ function App() {
     return (
       <div className="Logo"><img alt="NES EarthBound Zero Logo" src={image}></img></div>
     );
-
   }
 
   return (
-    <div className="App" style={{ backgroundImage: `url(${currBackground})` }}>
+    <div className="App" style={{ backgroundImage: `url(${currBackground})`}}  onKeyDown={handleKeydown}>
+      <Osd volume={volume} audios={audios}></Osd>
       <PlayList first={first} current={current} audios={audios}></PlayList>
-      <div className='Control'>
+      <div className='Control' onKeyDown={handleKeydown}>
         <PrevButton first={first} audios={audios} isPlaying={isPlaying} current={current} setCurrent={setCurrent}></PrevButton>
         <Play audios={audios} setFirst={setFirst} isPlaying={isPlaying} setIsPlaying={setIsPlaying} current={current}></Play>
         <NextButton first={first} audios={audios} isPlaying={isPlaying} current={current} setCurrent={setCurrent}></NextButton>
+        <PlusButton first={first} setVolume={setVolume}></PlusButton>
+        <MinusButton first={first} setVolume={setVolume}></MinusButton>
       </div>
       <Logo></Logo>
     </div>
