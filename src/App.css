@@ -13,11 +13,21 @@
   height: 100vh;  
 }
 
+.Osd {
+  color: green;
+  font-family: retro;
+  font-size: 2em;
+  position: absolute;
+  top: 22%;
+  right: 22%;
+}
+
+
 .Control {
   position: absolute;
   text-align: center;
   bottom: 22%;
-  left: 45%;
+  left: 36%;
 }
 
 .Button {
@@ -34,7 +44,8 @@
   position: absolute;
   text-align: left;  
   top: 50%;
-  right: 27%;
+  width: 27%;
+  right: 30%;
   font-size: 1.2em;
   border-bottom: 2px solid blue;
   padding: 10px;

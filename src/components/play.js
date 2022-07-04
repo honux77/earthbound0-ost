@@ -12,6 +12,9 @@ const Play = ({audios, setFirst, isPlaying, setIsPlaying, current})=> {
             console.log("Stop song: ", current)
             audios[current].pause();
         } else {
+            const songArr = decodeURI(audios[current].src).split("/")
+            const songfile = songArr[songArr.length - 1].split(".");
+            console.log(`${songfile[0]}.${songfile[1]}`);
             audios[current].play();
         }        
     };
