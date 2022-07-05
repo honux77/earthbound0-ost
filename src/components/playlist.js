@@ -7,14 +7,14 @@ const getTitle = (songs, filename, current) => {
     return filename
 }
 
-const makeList = (audios) => (audios.map((a) => {
-    const songArr = decodeURI(a.src).split("/")    
+const makeList = (tracks) => (tracks.map((t) => {
+    const songArr = decodeURI(t).split("/")    
     const songfile = songArr[songArr.length - 1].split(".");
     return `${songfile[0]}.${songfile[1]}`;        
     }));
 
-const PlayList = ({first, current, audios }) => {
-    const songs = makeList(audios);    
+const PlayList = ({first, current, audioBox }) => {
+    const songs = makeList(audioBox.tracks);    
     const SIZE = 3;
     if (first) return;
     let sublist = songs.slice(0, SIZE);

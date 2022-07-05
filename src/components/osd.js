@@ -1,7 +1,7 @@
 import { MAX_VOL, MIN_VOL } from "../constant";
 import React from 'react';
 
-const Osd = ({volume, audios}) => {
+const Osd = ({volume, audioBox}) => {
     const [show, setShow] = React.useState(false);
 
     React.useEffect(() => {
@@ -15,10 +15,7 @@ const Osd = ({volume, audios}) => {
         };
     },[volume]);
 
-    
-    audios.forEach(audio => {
-        audio.volume = volume / MAX_VOL;
-    });
+    audioBox.audio.volume = volume / MAX_VOL;    
 
     if (!show) return;
     let vol = `VOL: ${volume}`

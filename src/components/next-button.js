@@ -1,17 +1,20 @@
 import React from "react";
 
-const NextButton = ({first, audios, isPlaying, current, setCurrent})=> {
+const NextButton = ({first, audioBox, isPlaying, current, setCurrent})=> {    
 
     if(first) return;
 
-    const handlePlayButton = (e)=> {            
-        audios[current].pause();
-        audios[current].currentTime = 0;
+    const audio = audioBox.audio;
 
-        const curr = current === audios.length - 1 ? 0: current + 1;        
+    const handlePlayButton = (e)=> {            
+        audio.currentTime = 0;
+        audio.pause();
+        const curr = current === audioBox.tracks.length - 1 ? 0: current + 1;        
+        audio.src = audioBox.tracks[curr];
+        audio.currentTime = 0;        
         
         if (isPlaying) {
-            audios[curr].play();
+            audio.play();
         }
         setCurrent(curr);    
     };
