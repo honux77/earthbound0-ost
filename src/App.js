@@ -17,6 +17,7 @@ import MinusButton from './components/minus-button';
 import audioList from './components/audio-list';
 import Osd from './components/osd';
 import {MAX_VOL, VOL_STEP} from './constant';
+import Visualizer from './components/visualizer';
 
 
 function App() { 
@@ -28,14 +29,6 @@ function App() {
   const [volume, setVolume] = React.useState(MAX_VOL - 2 * VOL_STEP);
 
   const currBackground = first ? startBackground : playingBackground;
-
-  const handleKeydown = (e) => {
-    console.log("key press");
-    console.log(e.key);
-    setVolume((prev)=> {
-      return prev;
-    });
-  }
 
   React.useEffect(() => {
     console.log("once");
@@ -62,16 +55,21 @@ function App() {
   }
 
   return (
-    <div className="App" style={{ backgroundImage: `url(${currBackground})`}}  onKeyDown={handleKeydown}>
+    <div className="App" style={{ backgroundImage: `url(${currBackground})`}}>
       <Osd volume={volume} audios={audios}></Osd>
+
       <PlayList first={first} current={current} audios={audios}></PlayList>
-      <div className='Control' onKeyDown={handleKeydown}>
+      
+      <Visualizer audios={audios} current={current} isPlaying={isPlaying}></Visualizer>
+
+      <div className='Control'>
         <PrevButton first={first} audios={audios} isPlaying={isPlaying} current={current} setCurrent={setCurrent}></PrevButton>
         <Play audios={audios} setFirst={setFirst} isPlaying={isPlaying} setIsPlaying={setIsPlaying} current={current}></Play>
         <NextButton first={first} audios={audios} isPlaying={isPlaying} current={current} setCurrent={setCurrent}></NextButton>
         <PlusButton first={first} setVolume={setVolume}></PlusButton>
         <MinusButton first={first} setVolume={setVolume}></MinusButton>
       </div>
+
       <Logo></Logo>
     </div>
   );
