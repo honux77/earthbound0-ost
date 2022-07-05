@@ -1,20 +1,25 @@
 import React from "react";
 
-const PrevButton = ({first, audios, isPlaying, current, setCurrent})=> {    
+const PrevButton = ({first, audioBox, isPlaying, current, setCurrent})=> {    
     
     if(first) return;
+
+    const audio = audioBox.audio;
 
     const handlePlayButton = (e)=> {            
         
         console.log("stop audio")
-        audios[current].pause();
-        audios[current].currentTime = 0;
+        audio.pause();
+        audio.currentTime = 0;
 
-        const curr = current === 0 ? audios.length - 1: current - 1;        
+        const curr = current === 0 ? audioBox.tracks.length - 1: current - 1;   
+        audio.src = audioBox.tracks[curr];
+        audio.currentTime = 0;
         
         if (isPlaying) {
-            audios[curr].play();
+            audio.play();
         }
+        
         setCurrent(curr);    
     };
 

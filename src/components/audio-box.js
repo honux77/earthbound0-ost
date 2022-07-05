@@ -25,33 +25,38 @@ import track24 from "../mp3/24. Light of Life.mp3"
 import track25 from "../mp3/25. Because I Love You.mp3"
 import track26 from "../mp3/26. Smiles and Tears.mp3"
 
-const audioList = [];
+const audioBox = {
+    tracks: [],
+    audio: null
+};
 
-audioList.push(new Audio(track1));
-audioList.push(new Audio(track2));
-audioList.push(new Audio(track3));
-audioList.push(new Audio(track4));
-audioList.push(new Audio(track5));
-audioList.push(new Audio(track6));
-audioList.push(new Audio(track7));
-audioList.push(new Audio(track8));
-audioList.push(new Audio(track9));
-audioList.push(new Audio(track10));
-audioList.push(new Audio(track11));
-audioList.push(new Audio(track12));
-audioList.push(new Audio(track13));
-audioList.push(new Audio(track14));
-audioList.push(new Audio(track15));
-audioList.push(new Audio(track16));
-audioList.push(new Audio(track17));
-audioList.push(new Audio(track18));
-audioList.push(new Audio(track19));
-audioList.push(new Audio(track20));
-audioList.push(new Audio(track21));
-audioList.push(new Audio(track22));
-audioList.push(new Audio(track23));
-audioList.push(new Audio(track24));
-audioList.push(new Audio(track25));
-audioList.push(new Audio(track26));
+audioBox.tracks.push(track1);
+audioBox.tracks.push(track2);
+audioBox.tracks.push(track3);
+audioBox.tracks.push(track4);
+audioBox.tracks.push(track5);
+audioBox.tracks.push(track6);
+audioBox.tracks.push(track7);
+audioBox.tracks.push(track8);
+audioBox.tracks.push(track9);
+audioBox.tracks.push(track10);
+audioBox.tracks.push(track11);
+audioBox.tracks.push(track12);
+audioBox.tracks.push(track13);
+audioBox.tracks.push(track14);
+audioBox.tracks.push(track15);
+audioBox.tracks.push(track16);
+audioBox.tracks.push(track17);
+audioBox.tracks.push(track18);
+audioBox.tracks.push(track19);
+audioBox.tracks.push(track20);
+audioBox.tracks.push(track21);
+audioBox.tracks.push(track22);
+audioBox.tracks.push(track23);
+audioBox.tracks.push(track24);
+audioBox.tracks.push(track25);
+audioBox.tracks.push(track26);
 
-export default audioList;
+audioBox.audio = new Audio(track1);
+
+export default audioBox;
