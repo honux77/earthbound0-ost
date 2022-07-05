@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div className="App" style={{ backgroundImage: `url(${currBackground})` }}>
-      <Osd volume={volume} audioBox={audioBox}></Osd>
+      <Osd volume={volume} audioBox={audioBox} first={first}></Osd>
 
       <PlayList first={first} current={current} audioBox={audioBox}></PlayList>
 

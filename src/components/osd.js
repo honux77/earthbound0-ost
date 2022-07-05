@@ -1,7 +1,7 @@
 import { MAX_VOL, MIN_VOL } from "../constant";
 import React from 'react';
 
-const Osd = ({volume, audioBox}) => {
+const Osd = ({volume, audioBox, first}) => {
     const [show, setShow] = React.useState(false);
 
     React.useEffect(() => {
@@ -21,6 +21,7 @@ const Osd = ({volume, audioBox}) => {
     let vol = `VOL: ${volume}`
     if (volume === MAX_VOL) vol = "VOL: MAX"
     if (volume === MIN_VOL) vol = "MUTE"
+    if (first) vol = "MOTHER OST 0.11 BY HONUX"
 
     return (
         <div className="Osd">{vol}</div>
