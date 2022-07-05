@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/earthbound0-ost/static/css/main.ac79e91f.css",
-    "main.js": "/earthbound0-ost/static/js/main.ec7a57a3.js",
+    "main.css": "/earthbound0-ost/static/css/main.e959abcf.css",
+    "main.js": "/earthbound0-ost/static/js/main.9568653c.js",
     "static/js/787.2e2548a8.chunk.js": "/earthbound0-ost/static/js/787.2e2548a8.chunk.js",
     "static/media/26. Smiles and Tears.mp3": "/earthbound0-ost/static/media/26. Smiles and Tears.eca34b9402335155761e.mp3",
     "static/media/10. Eight Melodies.mp3": "/earthbound0-ost/static/media/10. Eight Melodies.1d3a597478ba426a9d51.mp3",
@@ -35,12 +35,12 @@
     "static/media/mother-logo-nospin.png": "/earthbound0-ost/static/media/mother-logo-nospin.49b547cda03c3a020dce.png",
     "static/media/nes2.ttf": "/earthbound0-ost/static/media/nes2.06ab2d306c9a44dd7fa7.ttf",
     "index.html": "/earthbound0-ost/index.html",
-    "main.ac79e91f.css.map": "/earthbound0-ost/static/css/main.ac79e91f.css.map",
-    "main.ec7a57a3.js.map": "/earthbound0-ost/static/js/main.ec7a57a3.js.map",
+    "main.e959abcf.css.map": "/earthbound0-ost/static/css/main.e959abcf.css.map",
+    "main.9568653c.js.map": "/earthbound0-ost/static/js/main.9568653c.js.map",
     "787.2e2548a8.chunk.js.map": "/earthbound0-ost/static/js/787.2e2548a8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ac79e91f.css",
-    "static/js/main.ec7a57a3.js"
+    "static/css/main.e959abcf.css",
+    "static/js/main.9568653c.js"
   ]
 }
