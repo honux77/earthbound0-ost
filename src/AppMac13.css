@@ -1,4 +1,4 @@
-@media (max-width: 900px) {
+@media (max-width: 1440px) {
 
   img {
     width: 100%;
@@ -27,8 +27,8 @@
   .Control {
     position: absolute;
     text-align: center;
-    bottom: 20%;
-    left: 12%;
+    bottom: 110px;
+    left: 580px;
     user-select: none;
   }
 
@@ -45,10 +45,10 @@
     color: white;
     position: absolute;
     text-align: left;
-    top: 31%;
-    width: 85%;
-    left: 3%;
-    font-size: 1.5em;
+    top: 230px;
+    width: 550px;
+    left: 430px;
+    font-size: 1.3em;
     border-bottom: 2px solid blue;
     padding: 10px;
     font-family: retro;
@@ -57,17 +57,15 @@
 
   .Logo {
     position: absolute;
-    left: 10%;
-    top: 25%;
-    width: 80%;
+    left: 450px;
+    top: 140px;
+    width: 500px;
   }
 
   .Visualizer {
     position: absolute;
-    left: 10%;
-    top: 48%;
-    width: 19%;
-    height: 20%;
+    left: 570px;
+    bottom: 230px;
   }
 
   .Canvas {
