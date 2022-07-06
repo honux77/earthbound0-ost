@@ -1,0 +1,79 @@
+@media (max-width: 900px) {
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .App {
+    text-align: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .Osd {
+    color: green;
+    font-family: retro;
+    font-size: 2em;
+    position: absolute;
+    top: 20%;
+    right: 10%;
+  }
+
+
+  .Control {
+    position: absolute;
+    text-align: center;
+    bottom: 20%;
+    left: 12%;
+    user-select: none;
+  }
+
+  .Button {
+    color: white;
+    margin: 5px;
+    font-size: 2em;
+    border-bottom: 2px solid red;
+    padding: 10px;
+    font-family: retro;
+  }
+
+  .PlayList {
+    color: white;
+    position: absolute;
+    text-align: left;
+    top: 31%;
+    width: 85%;
+    left: 3%;
+    font-size: 1.5em;
+    border-bottom: 2px solid blue;
+    padding: 10px;
+    font-family: retro;
+    list-style-type: none;
+  }
+
+  .Logo {
+    position: absolute;
+    left: 10%;
+    top: 25%;
+    width: 80%;
+  }
+
+  .Visualizer {
+    position: absolute;
+    left: 10%;
+    top: 48%;
+    width: 19%;
+    height: 20%;
+  }
+
+  .Canvas {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
