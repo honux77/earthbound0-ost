@@ -27,7 +27,7 @@
   .Control {
     position: absolute;
     text-align: center;
-    bottom: 110px;
+    bottom: 18.5%;
     left: 580px;
     user-select: none;
   }
@@ -45,7 +45,7 @@
     color: white;
     position: absolute;
     text-align: left;
-    top: 230px;
+    top: 35%;
     width: 550px;
     left: 430px;
     font-size: 1.3em;
@@ -57,15 +57,15 @@
 
   .Logo {
     position: absolute;
-    left: 450px;
-    top: 140px;
-    width: 500px;
+    left: 35%;
+    top: 22%;
+    width: 30%;
   }
 
   .Visualizer {
     position: absolute;
     left: 570px;
-    bottom: 230px;
+    bottom: 34%;
   }
 
   .Canvas {
