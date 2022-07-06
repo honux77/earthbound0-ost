@@ -1,4 +1,26 @@
+# Nintendo Mother 1 + 2 OST
+
+패미컴과 슈퍼패미컴으로 각각 출시된 Mother 1, Mother 2 (영문판 Earthbound)의 OST 페이지입니다.
+
+![mother ost cover](public/images/mother.png)
+
+## 기능 
+
+- OST 재생 
+- 음향 시각화 (이퀄라이저)
+- 1920 * 1080 화면에서 가장 정상적으로 표시됩니다. 
+- 모바일 반응형 (잘 안 됨)
+
+## 왜 만들었나
+
+인프런 진유림님 리액트 입문 강의를 듣다가 갑자기 토이프로젝트가 하고 싶어져서 만들게 되었습니다.
+
+---
+
+여기부터는 React App의 튜토리얼입니다. (학습을 위해 유용한 링크라 남겨둠)
+
 # Getting Started with Create React App
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
