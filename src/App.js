@@ -14,6 +14,7 @@ import audioBox from './components/audio-box';
 import Osd from './components/osd';
 import Visualizer from './components/visualizer';
 import { MAX_VOL, VOL_STEP } from './constant';
+import ForkMe from './components/fork-me';
 
 //Resource
 import startBackground from "./images/start.jpg";
@@ -52,6 +53,7 @@ function App() {
 
   return (
     <div className="App" style={{ backgroundImage: `url(${currBackground})` }}>
+      <ForkMe first={first}/>
       <Osd volume={volume} audioBox={audioBox} first={first} />
       <PlayList first={first} current={current} audioBox={audioBox} />
       <Visualizer audioBox={audioBox} current={current} isPlaying={isPlaying} />

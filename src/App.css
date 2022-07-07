@@ -17,6 +17,13 @@ img {
   height: 100vh;
 }
 
+.ForkMe {
+  position: absolute;
+  top:0;
+  right: 0;
+  width: 10%;
+}
+
 .Osd {
   color: green;
   font-family: retro;
