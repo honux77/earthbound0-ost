@@ -1,4 +1,6 @@
-const ForkMe = () => {
+const ForkMe = ({first}) => {
+    if (!first) return;
+
     return (
         <div className="ForkMe">
             <a href="https://github.com/honux77/earthbound0-ost">

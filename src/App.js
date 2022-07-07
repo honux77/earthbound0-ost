@@ -53,7 +53,7 @@ function App() {
 
   return (
     <div className="App" style={{ backgroundImage: `url(${currBackground})` }}>
-      <ForkMe/>
+      <ForkMe first={first}/>
       <Osd volume={volume} audioBox={audioBox} first={first} />
       <PlayList first={first} current={current} audioBox={audioBox} />
       <Visualizer audioBox={audioBox} current={current} isPlaying={isPlaying} />
