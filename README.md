@@ -1,5 +1,7 @@
 # Nintendo Mother 1 + 2 OST
 
+[Mother 1 + 2 OST](https://honux77.github.io/earthbound0-ost)
+
 패미컴과 슈퍼패미컴으로 각각 출시된 Mother 1, Mother 2 (영문판 Earthbound)의 OST 페이지입니다.
 
 ![mother ost cover](public/images/mother.png)
