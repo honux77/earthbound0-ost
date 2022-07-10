@@ -35,8 +35,7 @@ function App() {
 
   const currBackground = first ? startBackground : playingBackground;
 
-  React.useEffect(() => {
-    console.log("effect", current);
+  React.useEffect(() => {    
     audioBox.audio.onended = () => {
       const next = current === audioBox.tracks.length - 1 ? 0 : current + 1;      
       audioBox.audio.src = audioBox.tracks[next];
@@ -62,13 +61,13 @@ function App() {
       <Visualizer audioBox={audioBox} current={current} isPlaying={isPlaying} />
       <div className='Control'>
         <PrevButton first={first} audioBox={audioBox} isPlaying={isPlaying} current={current} setCurrent={setCurrent} />
-        <Play audioBox={audioBox} setFirst={setFirst} isPlaying={isPlaying} setIsPlaying={setIsPlaying} current={current} />
+        <Play first={first} audioBox={audioBox} setFirst={setFirst} isPlaying={isPlaying} setIsPlaying={setIsPlaying} current={current} />
         <NextButton first={first} audioBox={audioBox} isPlaying={isPlaying} current={current} setCurrent={setCurrent} />
         <PlusButton first={first} setVolume={setVolume} />
         <MinusButton first={first} setVolume={setVolume} />
       </div>
       <Logo />
-      <Counter />
+      <Counter first={first} />
     </div>
   );
 }
