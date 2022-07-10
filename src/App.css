@@ -24,6 +24,13 @@ img {
   width: 10%;
 }
 
+.Counter {
+  position: absolute;
+  top: 80%;
+  right: 45%;
+  width: 5%;
+}
+
 .Osd {
   color: green;
   font-family: retro;

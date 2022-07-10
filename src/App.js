@@ -13,14 +13,17 @@ import MinusButton from './components/minus-button';
 import audioBox from './components/audio-box';
 import Osd from './components/osd';
 import Visualizer from './components/visualizer';
-import { MAX_VOL, VOL_STEP } from './constant';
 import ForkMe from './components/fork-me';
+import Counter from './components/counter';
 
 //Resource
 import startBackground from "./images/start.jpg";
 import playingBackground from "./images/playing.jpg";
 import logo from "./images/mother-logo.gif"
 import stoppedLogo from "./images/mother-logo-nospin.png"
+
+//constants
+import { MAX_VOL, VOL_STEP } from './constant';
 
 function App() {
 
@@ -61,10 +64,11 @@ function App() {
         <PrevButton first={first} audioBox={audioBox} isPlaying={isPlaying} current={current} setCurrent={setCurrent} />
         <Play audioBox={audioBox} setFirst={setFirst} isPlaying={isPlaying} setIsPlaying={setIsPlaying} current={current} />
         <NextButton first={first} audioBox={audioBox} isPlaying={isPlaying} current={current} setCurrent={setCurrent} />
-        <PlusButton first={first} setVolume={setVolume}></PlusButton>
-        <MinusButton first={first} setVolume={setVolume}></MinusButton>
+        <PlusButton first={first} setVolume={setVolume} />
+        <MinusButton first={first} setVolume={setVolume} />
       </div>
-      <Logo></Logo>
+      <Logo />
+      <Counter />
     </div>
   );
 }
