@@ -26,9 +26,9 @@ img {
 
 .Counter {
   position: absolute;
-  top: 80%;
-  right: 45%;
-  width: 5%;
+  top: 10px;
+  left: 10px;
+  width: 100px;
 }
 
 .Osd {

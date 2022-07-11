@@ -1,6 +1,6 @@
 import React from "react";
 
-const Play = ({audioBox, setFirst, isPlaying, setIsPlaying, current})=> {
+const Play = ({audioBox, setFirst, isPlaying, setIsPlaying, current, first})=> {
     const audio = audioBox.audio;
  
     const handlePlayButton = (e)=> {                    
@@ -18,6 +18,12 @@ const Play = ({audioBox, setFirst, isPlaying, setIsPlaying, current})=> {
     };
 
     const child = isPlaying ? "Pause": "Play";
+
+    if (first) {
+        return (
+            <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span className="Button" onClick={handlePlayButton}>LET'S START</span></div>
+        );    
+    }
 
     return (
         <span className="Button" onClick={handlePlayButton}>{child}</span>

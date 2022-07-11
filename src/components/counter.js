@@ -1,4 +1,6 @@
-const Counter = () => {
+const Counter = ({first}) => {
+    if (!first) return;
+    
     return (
         <div className="Counter">
             <a href="https://hits.seeyoufarm.com">
