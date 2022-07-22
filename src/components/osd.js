@@ -1,4 +1,4 @@
-import { MAX_VOL, MIN_VOL } from "../constant";
+import { MAX_VOL, MIN_VOL, VERSION } from "../constant";
 import React from 'react';
 
 const Osd = ({volume, audioBox, first}) => {
@@ -21,7 +21,7 @@ const Osd = ({volume, audioBox, first}) => {
     let vol = `VOL: ${volume}`
     if (volume === MAX_VOL) vol = "VOL: MAX"
     if (volume === MIN_VOL) vol = "MUTE"
-    if (first) vol = "MOTHER OST 0.13 BY HONUX"
+    if (first) vol = "MOTHER 1 + 2 OST " + VERSION;
 
     return (
         <div className="Osd">{vol}</div>
