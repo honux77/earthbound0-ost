@@ -7,11 +7,11 @@
 
 ![mother ost cover](public/images/mother.png)
 
-## 기능 
+## 기능
 
-- OST 재생 
+- OST 재생
 - 음향 시각화 (이퀄라이저)
-- 1920 * 1080 화면에서 가장 정상적으로 표시됩니다. 
+- 1920 \* 1080 화면에서 가장 정상적으로 표시됩니다.
 - 모바일 반응형 (잘 안 됨)
 
 ## 왜 만들었나
@@ -22,23 +22,22 @@
 
 - 사파리 브라우저에서는 음악이 재생되지 않습니다.
 - 네크워크 상태에 따라 로딩이 발생할 수 있습니다.
-- 기기에 따라 인터페이스의 배치가 깨질 수 있습니다.
+- 기기의 해상도에 따라 인터페이스의 배치가 깨질 수 있습니다.
 
 ## How to build and deploy to gh-pages
 
 package.json의 homepage 값을 알맞게 수정합니다.
 
-`bash
+```bash
 # npm run build
 # npm deploy
-`
+```
 
 ---
 
 여기부터는 React App의 튜토리얼입니다. (학습을 위해 유용한 링크라 남겨둠)
 
 # Getting Started with Create React App
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
