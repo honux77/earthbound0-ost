@@ -10,7 +10,7 @@ const getTitle = (songs, filename, current) => {
 const makeList = (tracks) => (tracks.map((t) => {
     const songArr = decodeURI(t).split("/")    
     const songfile = songArr[songArr.length - 1].split(".");
-    return `${songfile[0]}.${songfile[1]}`;        
+    return songfile[0]; // Remove .vgz extension        
     }));
 
 const PlayList = ({first, current, audioBox }) => {

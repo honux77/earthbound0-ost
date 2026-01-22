@@ -12,6 +12,8 @@ class VGMPlayer {
         this.onSongEnd = onSongEnd;
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         this.sampleRate = this.audioContext.sampleRate;
+        this.analyserNode = this.audioContext.createAnalyser(); // New AnalyserNode
+        this.analyserNode.fftSize = 2048; // Default FFT size, can be tuned
 
         // Ring buffer for better performance
         this.bufferL = new Float32Array(BUFFER_SIZE);
@@ -180,7 +182,8 @@ class VGMPlayer {
         if (!this.scriptNode) {
             this.scriptNode = this.audioContext.createScriptProcessor(4096, 0, 2);
             this.scriptNode.onaudioprocess = this.processAudio.bind(this);
-            this.scriptNode.connect(this.audioContext.destination);
+            this.scriptNode.connect(this.analyserNode); // Connect to analyserNode first
+            this.analyserNode.connect(this.audioContext.destination); // Then analyserNode to destination
         }
         this.isPlaying = true;
     }

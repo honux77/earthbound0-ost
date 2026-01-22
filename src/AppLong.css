@@ -51,7 +51,7 @@
     color: white;
     position: absolute;
     text-align: left;
-    top: 31%;
+    top: 35%; /* Moved slightly downwards */
     width: 85%;
     left: 3%;
     font-size: 1.5em;
@@ -71,9 +71,9 @@
   .Visualizer {
     position: absolute;
     left: 10%;
-    top: 48%;
-    width: 19%;
-    height: 20%;
+    top: 55%; /* Moved further upwards */
+    width: 80%;
+    height: 30%;
   }
 
   .Canvas {

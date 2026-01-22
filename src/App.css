@@ -84,6 +84,7 @@ img {
   left: 28%;
   bottom: 18%;  
   height: 20%;
+  width: 45%; /* Adjusted width */
 }
 
 .Canvas {
