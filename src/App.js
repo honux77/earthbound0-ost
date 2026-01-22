@@ -31,19 +31,38 @@ function App() {
   const [first, setFirst] = React.useState(true);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [volume, setVolume] = React.useState(MAX_VOL - 2 * VOL_STEP);
-  
+
 
   const currBackground = first ? startBackground : playingBackground;
 
-  React.useEffect(() => {    
-    audioBox.audio.onended = () => {
-      const next = current === audioBox.tracks.length - 1 ? 0 : current + 1;      
-      audioBox.audio.src = audioBox.tracks[next];
-      audioBox.audio.currentTime = 0;
-      audioBox.audio.play();
-      setCurrent(next);
-    };    
-  }, [current]);
+  React.useEffect(() => {
+    // VGMPlayer load is async
+    const playTrack = async () => {
+      try {
+        await audioBox.audio.load(audioBox.tracks[current]);
+        audioBox.audio.play();
+      } catch (e) {
+        console.error("Playback failed", e);
+      }
+    };
+
+    // If it's not the first load (or if we want to auto-play on first load if allowed), we play.
+    // But usually we wait for user interaction.
+    // The original code played on current change.
+
+    if (!first) {
+      playTrack();
+    } else {
+      // Just load first track
+      audioBox.audio.load(audioBox.tracks[current]);
+    }
+
+    // audioBox.audio.onended equivalent?
+    // VGMPlayer doesn't emit events yet. We might need to add it or poll.
+    // For now, let's assume infinite loop or manual change.
+    // If we want auto-advance, we need to implement onended in VGMPlayer.
+
+  }, [current, first]);
 
   const Logo = () => {
     if (first) return;
@@ -55,7 +74,7 @@ function App() {
 
   return (
     <div className="App" style={{ backgroundImage: `url(${currBackground})` }}>
-      <ForkMe first={first}/>
+      <ForkMe first={first} />
       <Osd volume={volume} audioBox={audioBox} first={first} />
       <PlayList first={first} current={current} audioBox={audioBox} />
       <Visualizer audioBox={audioBox} current={current} isPlaying={isPlaying} />

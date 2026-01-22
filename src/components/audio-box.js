@@ -1,62 +1,54 @@
-import track1 from "../mp3/01. Mother Earth.mp3";
-import track2 from "../mp3/02. Pollyanna (I Believe in You).mp3";
-import track3 from "../mp3/03. Bein' Friend.mp3";
-import track4 from "../mp3/04. Humoresque of a Little Dog.mp3";
-import track5 from "../mp3/05. Eight Melodies (Toy piano Version sx).mp3";
-import track6 from "../mp3/06. Wisdom of The World.mp3";
-import track7 from "../mp3/07. TWINKLE Elementary School.mp3";
-import track8 from "../mp3/08. Snowman.mp3";
-import track9 from "../mp3/09. The Paradise Line.mp3";
-import track10 from "../mp3/10. Eight Melodies.mp3";
-import track11 from "../mp3/11. Theme of Onett.mp3";
-import track12 from "../mp3/12. Theme of Twoson.mp3";
-import track13 from "../mp3/13. Theme of Threek.mp3";
-import track14 from "../mp3/14. Theme of Saturn Valley.mp3"
-import track15 from "../mp3/15. Theme of Bicycle (Spinning Pedals).mp3"
-import track16 from "../mp3/16. Theme of Winters.mp3"
-import track17 from "../mp3/17. Hospital Dub (I Want to be Called a Great Doctor).mp3"
-import track18 from "../mp3/18. Lucky Nice Blues.mp3"
-import track19 from "../mp3/19. Fourside (Held in the Skyscraper).mp3"
-import track20 from "../mp3/20. Hotel (Pearl Necklace).mp3"
-import track21 from "../mp3/21. Theme of Summers.mp3"
-import track22 from "../mp3/22. Theme of Ramma.mp3"
-import track23 from "../mp3/23. Eight Melodies.mp3"
-import track24 from "../mp3/24. Light of Life.mp3"
-import track25 from "../mp3/25. Because I Love You.mp3"
-import track26 from "../mp3/26. Smiles and Tears.mp3"
+
+import VGMPlayer from "../utils/VGMPlayer";
 
 const audioBox = {
     tracks: [],
     audio: null
 };
 
-audioBox.tracks.push(track1);
-audioBox.tracks.push(track2);
-audioBox.tracks.push(track3);
-audioBox.tracks.push(track4);
-audioBox.tracks.push(track5);
-audioBox.tracks.push(track6);
-audioBox.tracks.push(track7);
-audioBox.tracks.push(track8);
-audioBox.tracks.push(track9);
-audioBox.tracks.push(track10);
-audioBox.tracks.push(track11);
-audioBox.tracks.push(track12);
-audioBox.tracks.push(track13);
-audioBox.tracks.push(track14);
-audioBox.tracks.push(track15);
-audioBox.tracks.push(track16);
-audioBox.tracks.push(track17);
-audioBox.tracks.push(track18);
-audioBox.tracks.push(track19);
-audioBox.tracks.push(track20);
-audioBox.tracks.push(track21);
-audioBox.tracks.push(track22);
-audioBox.tracks.push(track23);
-audioBox.tracks.push(track24);
-audioBox.tracks.push(track25);
-audioBox.tracks.push(track26);
+audioBox.tracks = [
+    "vgz/01 MOTHER EARTH.vgz",
+    "vgz/02 MY HOME.vgz",
+    "vgz/03 POLTERGEIST.vgz",
+    "vgz/04 POLLYANNA (I BELIEVE IN YOU).vgz",
+    "vgz/05 BASEMENT.vgz",
+    "vgz/06 BATTLE THEME 1.vgz",
+    "vgz/07 BATTLE THEME 2.vgz",
+    "vgz/08 BATTLE THEME 3.vgz",
+    "vgz/09 Victory.vgz",
+    "vgz/10 Fanfare 1.vgz",
+    "vgz/11 Level Up.vgz",
+    "vgz/12 Game Over.vgz",
+    "vgz/13 HUMORESQUE OF A LITTLE DOG.vgz",
+    "vgz/14 SOUTH CEMETERY.vgz",
+    "vgz/15 BEIN' FRIENDS.vgz",
+    "vgz/16 CHOUCREAM ZOO.vgz",
+    "vgz/17 CAVE 1.vgz",
+    "vgz/18 MAGICANT.vgz",
+    "vgz/19 WISDOM OF THE WORLD.vgz",
+    "vgz/20 TWINKLE ELEMENTARY SCHOOL.vgz",
+    "vgz/21 FACTORY.vgz",
+    "vgz/22 THE PARADISE LINE.vgz",
+    "vgz/23 SNOW MAN.vgz",
+    "vgz/24 Fanfare 2.vgz",
+    "vgz/25 Sleep.vgz",
+    "vgz/26 ADVENT DESERT.vgz",
+    "vgz/27 AIRPLANE.vgz",
+    "vgz/28 TANK.vgz",
+    "vgz/29 RUINS OF DESERT.vgz",
+    "vgz/30 EASTER.vgz",
+    "vgz/31 LIVE HOUSE.vgz",
+    "vgz/32 ALL THAT I NEEDED (WAS YOU).vgz",
+    "vgz/33 CAVE 2.vgz",
+    "vgz/34 HOLY LOLY MOUNTAIN.vgz",
+    "vgz/35 FALLIN' LOVE, AND.vgz",
+    "vgz/36 Tombstone (POLLYANNA (I BELIEVE IN YOU)).vgz",
+    "vgz/37 Eight Melodies.vgz",
+    "vgz/38 Queen Mary's Song (EIGHT MELODIES).vgz",
+    "vgz/39 GIEGUE.vgz",
+    "vgz/40 ENDING.vgz"
+].map(t => (process.env.PUBLIC_URL || '') + '/' + t);
 
-audioBox.audio = new Audio(track1);
+audioBox.audio = new VGMPlayer();
 
 export default audioBox;

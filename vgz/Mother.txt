@@ -1,0 +1,97 @@
+***********************************************
+* VGM music package                           *
+* http://vgmrips.net/                         *
+***********************************************
+Game name:           Mother
+System:              Family Computer
+Music hardware:      NES APU (N2A03)
+
+Music author:        Keiichi Suzuki,
+                     Hirokazu Tanaka
+Game developer:      Pax Softonica
+Game publisher:      Nintendo
+Game release date:   1988-07-27
+
+Package created by:  Sonic of 8!
+Package version:     1.02
+
+Song list, in approximate game order:
+Song name                           Length:
+                                    Total  Loop
+01 MOTHER EARTH                     1:50   1:37
+02 MY HOME                          0:29   0:29
+03 POLTERGEIST                      0:38   0:26
+04 POLLYANNA (I BELIEVE IN YOU)     0:53   0:45
+05 BASEMENT                         0:47   0:41
+06 BATTLE THEME 1                   0:36   0:34
+07 BATTLE THEME 2                   0:34   0:33
+08 BATTLE THEME 3                   0:50   0:48
+09 Victory                          0:02   -
+10 Fanfare 1                        0:03   -
+11 Level Up                         0:07   0:05
+12 Game Over                        0:17   0:16
+13 HUMORESQUE OF A LITTLE DOG       0:26   0:26
+14 SOUTH CEMETERY                   1:21   1:04
+15 BEIN' FRIENDS                    0:45   0:45
+16 CHOUCREAM ZOO                    0:48   0:48
+17 CAVE 1                           0:16   0:16
+18 MAGICANT                         1:15   1:12
+19 WISDOM OF THE WORLD              0:41   0:41
+20 TWINKLE ELEMENTARY SCHOOL        0:51   0:51
+21 FACTORY                          0:54   0:51
+22 THE PARADISE LINE                1:11   0:58
+23 SNOW MAN                         0:52   0:52
+24 Fanfare 2                        0:04   -
+25 Sleep                            0:04   -
+26 ADVENT DESERT                    0:44   0:43
+27 AIRPLANE                         0:40   0:40
+28 TANK                             0:56   0:51
+29 RUINS OF DESERT                  0:32   0:32
+30 EASTER                           0:30   0:30
+31 LIVE HOUSE                       0:24   0:19
+32 ALL THAT I NEEDED (WAS YOU)      1:31   -
+33 CAVE 2                           0:23   0:17
+34 HOLY LOLY MOUNTAIN               0:59   0:59
+35 FALLIN' LOVE, AND                0:57   0:48
+36 Tombstone (POLLYANNA (I BELIEVE
+   IN YOU))                         0:32   0:32
+37 Eight Melodies                   0:26   -
+38 Queen Mary's Song (EIGHT
+   MELODIES)                        1:00   0:30
+39 GIEGUE                           0:02   0:02
+40 ENDING                           3:23   0:30
+
+Total Length                       29:30  51:36
+
+
+Notes:
+Most of the tracks are unoptimized. I recommend
+to NOT run vgm_cmp, it destroys the data of the
+each VGM file (if you use -justtmr, the result
+is minimal...).
+
+Most of track names was taken from the a
+NSF + playlist. Hopefully, the NSF order is
+the correct order of gameplay.
+
+-Sonic of 8!
+
+
+I reordered and renamed the tracks based on the
+recent album release of this, in [COCB-54321~2]
+MOTHER MUSIC REVISITED [DELUXE EDITION].
+
+The tracks that appear in that album have their
+names in all-caps, while those that do not (or
+have conflicting names) retain the NSF titles,
+with the album's title in brackets where
+applicable.
+
+-marklincadet
+
+
+Package history:
+1.00 2012-09-29 Sonic of 8!: Initial release.
+1.01 2012-10-28 Valley Bell: Removed clicks
+ caused by DPCM and vgm_cmp'ed all songs.
+1.02 2023-01-08 marklincadet: Retagged songs.
