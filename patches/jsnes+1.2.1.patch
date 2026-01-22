@@ -1,0 +1,36 @@
+diff --git a/node_modules/jsnes/src/papu.js b/node_modules/jsnes/src/papu.js
+index fb545dd..9a1b16a 100644
+--- a/node_modules/jsnes/src/papu.js
++++ b/node_modules/jsnes/src/papu.js
+@@ -1163,12 +1163,21 @@ ChannelSquare.prototype = {
+   },
+ 
+   updateSampleValue: function () {
+-    if (this.isEnabled && this.lengthCounter > 0 && this.progTimerMax > 7) {
++    // NES APU spec: Pulse channels are silenced if their period (progTimerMax) is < 8.
++    // This explicitly handles cases where sweep or other factors might cause progTimerMax to go too low,
++    // preventing the generation of high-pitched artifacts.
++    if (this.progTimerMax < 8) {
++      this.sampleValue = 0;
++      return; // Early exit if period is too low
++    }
++
++    // Now proceed with normal sample value calculation, knowing progTimerMax is valid.
++    if (this.isEnabled && this.lengthCounter > 0) {
++      // Check for sweep overflow silencing (period too long)
+       if (
+         this.sweepMode === 0 &&
+         this.progTimerMax + (this.progTimerMax >> this.sweepShiftAmount) > 4095
+       ) {
+-        //if (this.sweepCarry) {
+         this.sampleValue = 0;
+       } else {
+         this.sampleValue =
+@@ -1176,6 +1185,7 @@ ChannelSquare.prototype = {
+           this.dutyLookup[(this.dutyMode << 3) + this.squareCounter];
+       }
+     } else {
++      // Channel is disabled or length counter is zero
+       this.sampleValue = 0;
+     }
+   },

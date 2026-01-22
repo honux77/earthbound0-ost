@@ -30,11 +30,18 @@ function App() {
   const [current, setCurrent] = React.useState(0);
   const [first, setFirst] = React.useState(true);
   const [isPlaying, setIsPlaying] = React.useState(false);
-  const [volume, setVolume] = React.useState(MAX_VOL - 2 * VOL_STEP);
-
-
-  const currBackground = first ? startBackground : playingBackground;
-
+      const [volume, setVolume] = React.useState(MAX_VOL - 2 * VOL_STEP);
+  
+      // Callback to advance to the next song when current song ends
+      const handleNextSong = React.useCallback(() => {
+          setCurrent((prevCurrent) => {
+              const nextIndex = (prevCurrent + 1) % audioBox.tracks.length;
+              return nextIndex;
+          });
+      }, [audioBox.tracks.length]);
+  
+  
+      const currBackground = first ? startBackground : playingBackground;
   React.useEffect(() => {
     // VGMPlayer load is async
     const playTrack = async () => {
@@ -62,7 +69,10 @@ function App() {
     // For now, let's assume infinite loop or manual change.
     // If we want auto-advance, we need to implement onended in VGMPlayer.
 
-  }, [current, first]);
+    // Set the onSongEnd callback for the VGMPlayer instance
+    audioBox.audio.onSongEnd = handleNextSong;
+
+  }, [current, first, handleNextSong]);
 
   const Logo = () => {
     if (first) return;

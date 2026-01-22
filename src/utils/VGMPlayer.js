@@ -8,7 +8,8 @@ const NES_CPU_FREQ = 1789772.5; // NTSC
 const BUFFER_SIZE = 16384; // Ring buffer size
 
 class VGMPlayer {
-    constructor() {
+    constructor(onSongEnd = null) {
+        this.onSongEnd = onSongEnd;
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         this.sampleRate = this.audioContext.sampleRate;
 
@@ -257,6 +258,7 @@ class VGMPlayer {
 
             if (result.done) {
                 this.isPlaying = false;
+                this.onSongEnd && this.onSongEnd(); // Call the callback if it exists
                 return;
             }
 
