@@ -47,7 +47,7 @@ audioBox.tracks = [
     "vgz/38 Queen Mary's Song (EIGHT MELODIES).vgz",
     "vgz/39 GIEGUE.vgz",
     "vgz/40 ENDING.vgz"
-].map(t => (process.env.PUBLIC_URL || '') + '/' + t);
+].map(t => t);
 
 audioBox.audio = new VGMPlayer();
 
