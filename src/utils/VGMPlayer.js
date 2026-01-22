@@ -3,48 +3,71 @@ import { NES } from 'jsnes';
 import * as TinyVGM from 'tinyvgm';
 import pako from 'pako';
 
+const VGM_SAMPLE_RATE = 44100;
+const NES_CPU_FREQ = 1789772.5; // NTSC
+const BUFFER_SIZE = 16384; // Ring buffer size
+
 class VGMPlayer {
     constructor() {
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         this.sampleRate = this.audioContext.sampleRate;
 
+        // Ring buffer for better performance
+        this.bufferL = new Float32Array(BUFFER_SIZE);
+        this.bufferR = new Float32Array(BUFFER_SIZE);
+        this.writePos = 0;
+        this.readPos = 0;
+
+        // DMC sample data storage
+        this.dmcData = new Uint8Array(0x4000); // 16KB for DMC samples (0xC000-0xFFFF)
+
         this.nes = new NES({
             onFrame: () => { },
             onAudioSample: (left, right) => {
-                if (this.audioBuffer.length < 4096 * 2) {
-                    this.audioBuffer.push(left);
-                    this.audioBuffer.push(right);
-                }
+                this.bufferL[this.writePos] = left;
+                this.bufferR[this.writePos] = right;
+                this.writePos = (this.writePos + 1) % BUFFER_SIZE;
             },
-            sampleRate: this.sampleRate
+            sampleRate: VGM_SAMPLE_RATE,
+            emulateSound: true
         });
 
-        // Monkey-patch stop() method for jsnes as it calls it on illegal opcode (which happens with dummy ROM)
-        this.nes.stop = () => { };
+        // Create a fake memory mapper for DMC data access
+        this.nes.mmap = {
+            load: (addr) => {
+                if (addr >= 0xC000 && addr <= 0xFFFF) {
+                    return this.dmcData[addr - 0xC000];
+                }
+                return 0;
+            }
+        };
+
+        // CPU cycles per VGM sample (at 44100 Hz)
+        this.cyclesPerSample = NES_CPU_FREQ / VGM_SAMPLE_RATE;
+        this.cycleFraction = 0;
+
+        // For sample rate conversion
+        this.resamplePos = 0;
+        this.resampleStep = VGM_SAMPLE_RATE / this.sampleRate;
 
         this.scriptNode = null;
         this.vgmData = null;
-        this.commandIterator = null; // Iterator for VGM commands
+        this.commandIterator = null;
         this.waitSamples = 0;
         this.loop = true;
         this.volume = 1.0;
         this.isPlaying = false;
-        this.audioBuffer = [];
+    }
 
-        // Initialize with dummy ROM to ensure CPU runs
-        const dummyROM = new Uint8Array(16 + 16384);
-        dummyROM.set([0x4E, 0x45, 0x53, 0x1A, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-        try {
-            this.nes.loadROM(String.fromCharCode(...dummyROM));
-        } catch (e) {
-            console.error("Failed to load dummy ROM", e);
-        }
+    getBufferedSamples() {
+        let diff = this.writePos - this.readPos;
+        if (diff < 0) diff += BUFFER_SIZE;
+        return diff;
     }
 
     async load(url) {
         try {
             this.stop();
-            console.log("Loading VGM:", url);
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`Fetch failed: ${response.status} ${response.statusText}`);
@@ -53,21 +76,14 @@ class VGMPlayer {
 
             let vgmBuffer = arrayBuffer;
             const header = new Uint8Array(arrayBuffer.slice(0, 4));
-            console.log("Header bytes:", header[0].toString(16), header[1].toString(16), header[2].toString(16), header[3].toString(16));
 
             // Check for GZIP (0x1F 0x8B)
             if (header[0] === 0x1f && header[1] === 0x8b) {
-                console.log("Detected GZIP, unzipping...");
-                try {
-                    vgmBuffer = pako.ungzip(new Uint8Array(arrayBuffer));
-                    const newHeader = new Uint8Array(vgmBuffer.slice(0, 4));
-                    console.log("Unzipped header:", newHeader[0].toString(16), newHeader[1].toString(16), newHeader[2].toString(16), newHeader[3].toString(16));
-                } catch (err) {
-                    console.error("Unzip failed:", err);
-                }
-            } else {
-                console.log("Not GZIP, assuming raw VGM");
+                vgmBuffer = pako.ungzip(new Uint8Array(arrayBuffer));
             }
+
+            // Extract DMC data blocks before parsing
+            this.extractDmcData(vgmBuffer);
 
             this.vgmData = TinyVGM.parseVGM(vgmBuffer);
             this.reset();
@@ -77,14 +93,78 @@ class VGMPlayer {
         }
     }
 
+    extractDmcData(vgmBuffer) {
+        // Clear previous DMC data
+        this.dmcData.fill(0);
+
+        const view = vgmBuffer instanceof Uint8Array ? vgmBuffer : new Uint8Array(vgmBuffer);
+
+        // Get data offset (at 0x34)
+        const dataOffset = (view[0x34] | (view[0x35] << 8) | (view[0x36] << 16) | (view[0x37] << 24)) + 0x34;
+
+        let pos = dataOffset;
+        while (pos < view.length) {
+            const cmd = view[pos];
+            if (cmd === 0x66) break; // End of data
+
+            if (cmd === 0x67) {
+                // Data block: 0x67 0x66 tt ss ss ss ss [data]
+                const type = view[pos + 2];
+                const size = view[pos + 3] | (view[pos + 4] << 8) | (view[pos + 5] << 16) | (view[pos + 6] << 24);
+
+                // Type 0xC2 = NES APU RAM (with two-chip bit)
+                // Type 0x07 = NES APU RAM
+                if (type === 0xC2 || type === 0x07) {
+                    const dataStart = pos + 7;
+                    // First 2 bytes might be address offset for type 0xC2
+                    let offset = 0;
+                    let actualSize = size;
+                    if (type === 0xC2 && size > 2) {
+                        offset = view[dataStart] | (view[dataStart + 1] << 8);
+                        actualSize = size - 2;
+                        // Copy data to DMC buffer
+                        for (let i = 0; i < actualSize && (offset + i) < this.dmcData.length; i++) {
+                            this.dmcData[offset + i] = view[dataStart + 2 + i];
+                        }
+                    } else {
+                        // Copy data starting at 0xC000 (offset 0 in our buffer)
+                        for (let i = 0; i < actualSize && i < this.dmcData.length; i++) {
+                            this.dmcData[i] = view[dataStart + i];
+                        }
+                    }
+                }
+                pos += 7 + size;
+            }
+            else if (cmd === 0xB4) pos += 3;
+            else if (cmd >= 0x70 && cmd < 0x80) pos += 1;
+            else if (cmd === 0x61) pos += 3;
+            else if (cmd === 0x62 || cmd === 0x63) pos += 1;
+            else if (cmd >= 0x30 && cmd <= 0x3F) pos += 2;
+            else if (cmd >= 0x40 && cmd <= 0x4E) pos += 3;
+            else if (cmd === 0x4F || cmd === 0x50) pos += 2;
+            else if (cmd >= 0x51 && cmd <= 0x5F) pos += 3;
+            else if (cmd >= 0xA0 && cmd <= 0xBF) pos += 3;
+            else if (cmd >= 0xC0 && cmd <= 0xDF) pos += 4;
+            else if (cmd >= 0xE0 && cmd <= 0xE1) pos += 5;
+            else if (cmd >= 0x80 && cmd < 0x90) pos += 1;
+            else pos += 1;
+        }
+    }
+
     reset() {
-        this.nes.reset();
+        this.nes.papu.reset();
         this.waitSamples = 0;
-        this.audioBuffer = [];
+        this.writePos = 0;
+        this.readPos = 0;
+        this.cycleFraction = 0;
+        this.resamplePos = 0;
+
+        // Enable all APU channels (including DMC)
+        this.nes.papu.writeReg(0x4015, 0x1F);
+        // Set frame counter to 4-step mode
+        this.nes.papu.writeReg(0x4017, 0x40);
 
         if (this.vgmData) {
-            // Get the command generator
-            // Pass loop count if needed, default handles infinite/defined loops
             this.commandIterator = this.vgmData.commands();
         } else {
             this.commandIterator = null;
@@ -124,32 +204,49 @@ class VGMPlayer {
     processAudio(e) {
         if (!this.isPlaying || !this.vgmData) return;
 
-        // Debug trace
-        if (Math.random() < 0.01) {
-            console.log(`processAudio: CtxState=${this.audioContext.state}, BufferLen=${this.audioBuffer.length}, WaitSamples=${this.waitSamples}`);
-        }
-
         const outputL = e.outputBuffer.getChannelData(0);
         const outputR = e.outputBuffer.getChannelData(1);
         const count = outputL.length;
 
-        for (let i = 0; i < count; i++) {
+        // Calculate how many VGM samples we need (with some extra for buffer)
+        const vgmSamplesNeeded = Math.ceil(count * this.resampleStep) + 8192;
+
+        // Generate samples until we have enough buffered
+        while (this.getBufferedSamples() < vgmSamplesNeeded && this.isPlaying) {
             this.runVGM();
 
-            while (this.audioBuffer.length < 2) {
-                this.nes.frame();
-            }
-
-            const l = this.audioBuffer.shift();
-            const r = this.audioBuffer.shift();
-
-            outputL[i] = l * this.volume;
-            outputR[i] = r * this.volume;
+            // Clock APU for one sample's worth of CPU cycles
+            this.cycleFraction += this.cyclesPerSample;
+            const wholeCycles = Math.floor(this.cycleFraction);
+            this.cycleFraction -= wholeCycles;
+            this.nes.papu.clockFrameCounter(wholeCycles);
 
             if (this.waitSamples > 0) {
                 this.waitSamples--;
             }
         }
+
+        // Output with linear interpolation for sample rate conversion
+        for (let i = 0; i < count; i++) {
+            const pos = Math.floor(this.resamplePos);
+            const frac = this.resamplePos - pos;
+            const idx0 = (this.readPos + pos) % BUFFER_SIZE;
+            const idx1 = (this.readPos + pos + 1) % BUFFER_SIZE;
+
+            // Linear interpolation
+            const l = this.bufferL[idx0] * (1 - frac) + this.bufferL[idx1] * frac;
+            const r = this.bufferR[idx0] * (1 - frac) + this.bufferR[idx1] * frac;
+
+            outputL[i] = l * this.volume;
+            outputR[i] = r * this.volume;
+
+            this.resamplePos += this.resampleStep;
+        }
+
+        // Advance read position
+        const samplesConsumed = Math.floor(this.resamplePos);
+        this.readPos = (this.readPos + samplesConsumed) % BUFFER_SIZE;
+        this.resamplePos -= samplesConsumed;
     }
 
     runVGM() {
@@ -159,29 +256,20 @@ class VGMPlayer {
             const result = this.commandIterator.next();
 
             if (result.done) {
-                console.log("Track Ended");
                 this.isPlaying = false;
                 return;
             }
 
             const cmd = result.value;
 
-            // Handle wait samples
             if (cmd.sampleIncrement) {
                 this.waitSamples += cmd.sampleIncrement;
             }
 
             // Handle NES APU Write (0xB4)
-            if (cmd.cmd === 0xB4) {
-                // cmd.data is a Uint8Array [reg, val]
-                if (cmd.data && cmd.data.length >= 2) {
-                    const reg = cmd.data[0];
-                    const val = cmd.data[1];
-                    this.nes.cpu.write(0x4000 + reg, val);
-                }
+            if (cmd.cmd === 0xB4 && cmd.data && cmd.data.length >= 2) {
+                this.nes.papu.writeReg(0x4000 + cmd.data[0], cmd.data[1]);
             }
-            // TinyVGM handles looping internally via the generator, so we don't need manual loop logic here
-            // It also handles parsing of data bytes for us.
         }
     }
 }
