@@ -25,7 +25,7 @@ const Osd = ({ volume, audioBox, first }) => {
     let vol = `VOL: ${volume}`
     if (volume === MAX_VOL) vol = "VOL: MAX"
     if (volume === MIN_VOL) vol = "MUTE"
-    if (first) vol = "MOTHER 1 NES OST" + VERSION;
+    if (first) vol = "MOTHER 1 NES OST " + VERSION;
 
     return (
         <div className="Osd">{vol}</div>
