@@ -1,5 +1,5 @@
 {
-  "homepage": ".",
+  "homepage": "https://honux77.github.io/earthbound0-ost/",
   "name": "earthbound0-ost",
   "version": "0.1.0",
   "private": true,
@@ -7,7 +7,6 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "gh-pages": "^4.0.0",
     "jsnes": "^1.2.1",
     "pako": "^2.1.0",
     "patch-package": "^8.0.1",
@@ -21,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
@@ -49,5 +48,8 @@
     "transformIgnorePatterns": [
       "node_modules/(?!tinyvgm)/"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
