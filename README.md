@@ -1,4 +1,4 @@
-# Nintendo Mother 1 + 2 OST
+# Nintendo Mother 1 NES OST
 
 - [Mother 1 NES OST](https://honux77.github.io/earthbound0-ost)
 - [GitHub](https://github.com/honux77/earthbound0-ost)
