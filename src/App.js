@@ -27,11 +27,27 @@ import { MAX_VOL, VOL_STEP } from './constant';
 
 function App() {
 
-  const [current, setCurrent] = React.useState(0);
-  const [first, setFirst] = React.useState(true);
-  const [isPlaying, setIsPlaying] = React.useState(false);
+  // Check URL hash for track number on initial load
+  const getInitialTrack = () => {
+    const hash = window.location.hash.slice(1);
+    const trackNum = parseInt(hash, 10);
+    if (!isNaN(trackNum) && trackNum >= 1 && trackNum <= audioBox.tracks.length) {
+      return trackNum - 1; // Convert to 0-indexed
+    }
+    return 0;
+  };
+
+  const hasUrlTrack = () => {
+    const hash = window.location.hash.slice(1);
+    const trackNum = parseInt(hash, 10);
+    return !isNaN(trackNum) && trackNum >= 1 && trackNum <= audioBox.tracks.length;
+  };
+
+  const [current, setCurrent] = React.useState(getInitialTrack);
+  const [first, setFirst] = React.useState(!hasUrlTrack());
+  const [isPlaying, setIsPlaying] = React.useState(hasUrlTrack());
       const [volume, setVolume] = React.useState(MAX_VOL - 2 * VOL_STEP);
-  
+
       // Callback to advance to the next song when current song ends
       const handleNextSong = React.useCallback(() => {
           setCurrent((prevCurrent) => {
@@ -39,9 +55,22 @@ function App() {
               return nextIndex;
           });
       }, [audioBox.tracks.length]);
-  
-  
+
+
       const currBackground = first ? startBackground : playingBackground;
+
+  // Auto-play after 3 seconds (only if no URL track specified)
+  React.useEffect(() => {
+    if (!first) return;
+
+    const timer = setTimeout(() => {
+      setFirst(false);
+      setIsPlaying(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [first]);
+
   React.useEffect(() => {
     // VGMPlayer load is async
     const playTrack = async () => {
@@ -96,7 +125,7 @@ function App() {
         <MinusButton first={first} setVolume={setVolume} />
       </div>
       <Logo />
-      <Counter first={first} />
+      <Counter />
     </div>
   );
 }

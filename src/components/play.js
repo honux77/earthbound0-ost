@@ -21,7 +21,7 @@ const Play = ({audioBox, setFirst, isPlaying, setIsPlaying, current, first})=> {
 
     if (first) {
         return (
-            <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span className="Button" onClick={handlePlayButton}>LET'S START</span></div>
+            <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span className="Button" onClick={handlePlayButton}>[CLICK HERE!]</span></div>
         );    
     }
 
