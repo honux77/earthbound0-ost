@@ -83,25 +83,3 @@
     height: 100%;
   }
 }
-
-/* 폰 가로 모드 */
-@media (max-height: 500px) and (orientation: landscape) {
-  .Logo {
-    position: absolute;
-    left: 30%;
-    top: 8%;
-    width: 40%;
-  }
-
-  .PlayList {
-    top: 28%;
-    width: 42%;
-    left: 27%;
-  }
-
-  .Control {
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
