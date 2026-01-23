@@ -37,15 +37,9 @@ function App() {
     return 0;
   };
 
-  const hasUrlTrack = () => {
-    const hash = window.location.hash.slice(1);
-    const trackNum = parseInt(hash, 10);
-    return !isNaN(trackNum) && trackNum >= 1 && trackNum <= audioBox.tracks.length;
-  };
-
   const [current, setCurrent] = React.useState(getInitialTrack);
-  const [first, setFirst] = React.useState(!hasUrlTrack());
-  const [isPlaying, setIsPlaying] = React.useState(hasUrlTrack());
+  const [first, setFirst] = React.useState(true);
+  const [isPlaying, setIsPlaying] = React.useState(false);
       const [volume, setVolume] = React.useState(MAX_VOL - 2 * VOL_STEP);
 
       // Callback to advance to the next song when current song ends
