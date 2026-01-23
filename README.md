@@ -1,18 +1,19 @@
 # Nintendo Mother 1 + 2 OST
 
-- [Mother 1 + 2 OST](https://honux77.github.io/earthbound0-ost)
+- [Mother 1 NES OST](https://honux77.github.io/earthbound0-ost)
 - [GitHub](https://github.com/honux77/earthbound0-ost)
 
-패미컴과 슈퍼패미컴으로 각각 출시된 Mother 1, Mother 2 (영문판 Earthbound)의 OST 페이지입니다.
+패미컴으로 출시된 Mother 1 (영문판 Earthbound)의 OST 페이지입니다.
 
 ![mother ost cover](public/images/mother.png)
 
 ## 기능
 
 - OST 재생
-- 음향 시각화 (이퀄라이저)
+- 기존 mp3재생에서 VGZ 파일을 NES 에뮬레이터 (jsnes)를 사용하여 재생합니다.
+- 음향 시각화 
 - 1920 \* 1080 화면에서 가장 정상적으로 표시됩니다.
-- 모바일 반응형 (잘 안 됨)
+- 모바일 반응형 (되긴 되는데 잘 안 됨)
 
 ## 왜 만들었나
 
@@ -20,7 +21,6 @@
 
 ## 알려진 문제점
 
-- 사파리 브라우저에서는 음악이 재생되지 않습니다.
 - 네크워크 상태에 따라 로딩이 발생할 수 있습니다.
 - 기기의 해상도에 따라 인터페이스의 배치가 깨질 수 있습니다.
 
@@ -28,7 +28,12 @@
 
 package.json의 homepage 값을 알맞게 수정합니다.
 
+```
+"homepage": "https://honux77.github.io/earthbound0-ost", //내 github pages URL
+```
+
 ```bash
+# git switch deploy
 # npm run build
 # npm deploy
 ```
