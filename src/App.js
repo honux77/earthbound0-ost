@@ -59,18 +59,6 @@ function App() {
 
       const currBackground = first ? startBackground : playingBackground;
 
-  // Auto-play after 3 seconds (only if no URL track specified)
-  React.useEffect(() => {
-    if (!first) return;
-
-    const timer = setTimeout(() => {
-      setFirst(false);
-      setIsPlaying(true);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [first]);
-
   React.useEffect(() => {
     // VGMPlayer load is async
     const playTrack = async () => {
